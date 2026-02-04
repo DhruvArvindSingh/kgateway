@@ -468,6 +468,7 @@ spec:
   containers:
   - name: puller
     image: %s
+    imagePullPolicy: IfNotPresent
     command: ["true"]
 `, podName, image)
 

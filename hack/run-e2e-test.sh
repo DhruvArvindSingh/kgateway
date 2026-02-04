@@ -678,6 +678,13 @@ main() {
             make package-kgateway-charts package-agentgateway-charts
             echo ""
         fi
+
+        # Build and load extproc-server image if needed for extproc tests
+        if [[ "$test_pattern" == *"xtproc"* || "$test_pattern" == *"ExtProc"* || "$test_pattern" == "TestAgentgatewayIntegration" ]]; then
+            log_info "Detected ExtProc test, ensuring extproc-server image is available..."
+            make extproc-server-docker kind-load-extproc-server
+            echo ""
+        fi
     fi
 
     # Run the test
